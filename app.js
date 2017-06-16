@@ -17,11 +17,15 @@ let appState = {
     appState.items.pop(item);
   }
 
-  // //check(line-through) item
-  // let checkItem = function(appState, item) {
-  //   $('.shopping-item').css('text-decoration', 'line-through');
-  // }
-  // console.log('hello');
+  // // //check(line-through) item
+  // let checkItem = function() {
+  //   //$('.shopping-item').css('text-decoration', 'line-through')
+  //    $('.shopping-item-toggle').addClass('.shopping-item__checked')
+  //   // .siblings('.shopping-item')
+  //   // .addClass('.shopping-item__checked');
+  //   console.log('hello')
+ // }
+ 
 
 
 // 3 make render functions
@@ -55,16 +59,33 @@ $(document).ready(function() {
   $('.container').on('click', '.shopping-item-delete', function(event){
     event.preventDefault();
     console.log("delete")
-    var itemName = $(event.currentTarget)
+    let itemName = $(event.currentTarget)
       .parent()
       .siblings('.shopping-item')
       .text()
     deleteItem(appState, itemName);
     renderList(appState, $('.shopping-list'));
   });
-// $(event.currentTarget).toggleClass('bulb-on')
 
   //el for check
+$('.container').on('click', '.shopping-item-toggle', function(event){
+    event.preventDefault();
+    console.log("toggle function")
+
+  // //check(line-through) item
+  function checkItem() {
+    //$('.shopping-item').css('text-decoration', 'line-through')
+     $('.shopping-item-toggle').addClass('.shopping-item__checked')
+    // .siblings('.shopping-item')
+    // .addClass('.shopping-item__checked');
+    console.log('hello')
+  }
+  
+    checkItem();
+    renderList(appState, $('.shopping-list'));
+  });
+
+
 
   //call initial state
   //call event listener function
