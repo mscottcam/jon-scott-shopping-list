@@ -9,7 +9,6 @@ let appState = {
   //add item
   let addItem = function(appState, item) {
     appState.items.push(item);
-    //renderList()
   }
 
   //delete item
@@ -17,36 +16,25 @@ let appState = {
     appState.items.pop(item);
   }
 
-  // // //check(line-through) item
-  // let checkItem = function() {
-  //   //$('.shopping-item').css('text-decoration', 'line-through')
-  //    $('.shopping-item-toggle').addClass('.shopping-item__checked')
-  //   // .siblings('.shopping-item')
-  //   // .addClass('.shopping-item__checked');
-  //   console.log('hello')
- // }
- 
-
+  // check(line-through) item
+  let checkItem = function(appState, item) {
+     
+    }
 
 // 3 make render functions
   //render for add
   let renderList = function (appState, element){
     let itemsHTML = appState.items.map(function(item){
-      return `<li><span class="shopping-item"> ${item} </span><div class="shopping-item-controls"><button class="shopping-item-toggle"><span class="button-label">check</span></button><button class="shopping-item-delete"><span class="button-label">delete</span></button></div></li>`;
-    })
+
+        return `<li><span> ${item} </span><div class="shopping-item-controls"><button class="shopping-item-toggle"><span class="button-label">check</span></button><button class="shopping-item-delete"><span class="button-label">delete</span></button></div></li>`;
+    
+  })
       element.html(itemsHTML);
   }
 
 // 4 make event listener function
 
 $(document).ready(function() {
-
-  //el for add
-
-// event handler for add function
-// push Add Item button - Submit - starts the function
-// on submit, the submitted text to be added to 'items' array
-// once submited to items, render function should do what it's meant to d0
 
   //el for add
   $('#js-shopping-list-form').submit(function(event){
@@ -58,7 +46,7 @@ $(document).ready(function() {
   //el for delete container's
   $('.container').on('click', '.shopping-item-delete', function(event){
     event.preventDefault();
-    console.log("delete")
+    console.log("item got deleted")
     let itemName = $(event.currentTarget)
       .parent()
       .siblings('.shopping-item')
@@ -70,23 +58,16 @@ $(document).ready(function() {
   //el for check
 $('.container').on('click', '.shopping-item-toggle', function(event){
     event.preventDefault();
-    console.log("toggle function")
+     let itemName = 
+     $($(event.currentTarget)
+      .parent()
+      .siblings('.shopping-item')
+      .text()).toggleClass('.shopping-item__checked')
 
-  // //check(line-through) item
-  function checkItem() {
-    //$('.shopping-item').css('text-decoration', 'line-through')
-     $('.shopping-item-toggle').addClass('.shopping-item__checked')
-    // .siblings('.shopping-item')
-    // .addClass('.shopping-item__checked');
-    console.log('hello')
-  }
-  
-    checkItem();
+    checkItem(appState);
+    console.log('check event listener')
     renderList(appState, $('.shopping-list'));
+    
   });
 
-
-
-  //call initial state
-  //call event listener function
 });
